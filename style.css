@@ -69,7 +69,7 @@ li {
 html, #page-wrap { background-color: transparent; }
 html {
   background: var(--stadium-night) url(images/background.jpg) center center no-repeat fixed;
-  background-size: cover;
+  background-size: contain;
 }
 body {
   max-width: 900px;
