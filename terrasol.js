@@ -498,11 +498,22 @@ const Habitability = (function () {
   function updateReadout(alpha) {
     const tempK = calcSurfaceTempK(state.tauStar, alpha, state.S0);
     const tempF = kelvinToF(tempK);
-    const habitable = tempF > 32 && tempF < 112;
+
+    let statusClass, statusText;
+    if (tempF <= 32) {
+      statusClass = "too-cold";
+      statusText = "too cold — not habitable";
+    } else if (tempF >= 112) {
+      statusClass = "too-hot";
+      statusText = "too hot — not habitable";
+    } else {
+      statusClass = "habitable";
+      statusText = "potentially habitable";
+    }
+
     els.terraReadout.innerHTML =
-      "Terra surface temperature: <strong>" + tempF.toFixed(1) + "°F</strong> (" +
-      (habitable ? "potentially habitable" : "not habitable") + ")";
-    els.terraReadout.className = "readout " + (habitable ? "habitable" : "not-habitable");
+      "Terra surface temperature: <strong>" + tempF.toFixed(1) + "°F</strong> (" + statusText + ")";
+    els.terraReadout.className = "readout " + statusClass;
     els.solarReadout.textContent = "Current solar input: " + state.S0.toFixed(1) + " W/m²";
   }
 

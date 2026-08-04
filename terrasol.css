@@ -107,10 +107,13 @@ table.terrasol-table td:last-child {
   font-weight: 700;
 }
 .readout.habitable {
-  color: #7fd6c2;
+  color: #ffd54f;
 }
-.readout.not-habitable {
-  color: #e07856;
+.readout.too-hot {
+  color: #ef5350;
+}
+.readout.too-cold {
+  color: #4aa3df;
 }
 
 #btn-sync-solar {
