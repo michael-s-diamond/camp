@@ -12,7 +12,6 @@
 const AU_IN_M = 149597870700;
 const LUMINOSITY_OUR_SUN = 3.828e26;
 const SIGMA = 5.670367e-8;
-const EARTH_RADIUS_M = 6.371e6;
 
 // hexrgb color at each 100K step from 1000K to 40000K ('10deg' column)
 const STELLAR_COLORS = ["#ff3800","#ff4700","#ff5300","#ff5d00","#ff6500","#ff6d00","#ff7300","#ff7900","#ff7e00","#ff8300","#ff8912","#ff8e21","#ff932c","#ff9836","#ff9d3f","#ffa148","#ffa54f","#ffa957","#ffad5e","#ffb165","#ffb46b","#ffb872","#ffbb78","#ffbe7e","#ffc184","#ffc489","#ffc78f","#ffc994","#ffcc99","#ffce9f","#ffd1a3","#ffd3a8","#ffd5ad","#ffd7b1","#ffd9b6","#ffdbba","#ffddbe","#ffdfc2","#ffe1c6","#ffe3ca","#ffe4ce","#ffe6d2","#ffe8d5","#ffe9d9","#ffebdc","#ffece0","#ffeee3","#ffefe6","#fff0e9","#fff2ec","#fff3ef","#fff4f2","#fff5f5","#fff6f8","#fff8fb","#fff9fd","#fef9ff","#fcf7ff","#f9f6ff","#f7f5ff","#f5f3ff","#f3f2ff","#f0f1ff","#eff0ff","#edefff","#ebeeff","#e9edff","#e7ecff","#e6ebff","#e4eaff","#e3e9ff","#e1e8ff","#e0e7ff","#dee6ff","#dde6ff","#dce5ff","#dae4ff","#d9e3ff","#d8e3ff","#d7e2ff","#d6e1ff","#d4e1ff","#d3e0ff","#d2dfff","#d1dfff","#d0deff","#cfddff","#cfddff","#cedcff","#cddcff","#ccdbff","#cbdbff","#cadaff","#c9daff","#c9d9ff","#c8d9ff","#c7d8ff","#c7d8ff","#c6d8ff","#c5d7ff","#c4d7ff","#c4d6ff","#c3d6ff","#c3d6ff","#c2d5ff","#c1d5ff","#c1d4ff","#c0d4ff","#c0d4ff","#bfd3ff","#bfd3ff","#bed3ff","#bed2ff","#bdd2ff","#bdd2ff","#bcd2ff","#bcd1ff","#bbd1ff","#bbd1ff","#bad0ff","#bad0ff","#b9d0ff","#b9d0ff","#b9cfff","#b8cfff","#b8cfff","#b7cfff","#b7ceff","#b7ceff","#b6ceff","#b6ceff","#b6cdff","#b5cdff","#b5cdff","#b5cdff","#b4cdff","#b4ccff","#b4ccff","#b3ccff","#b3ccff","#b3ccff","#b2cbff","#b2cbff","#b2cbff","#b2cbff","#b1cbff","#b1caff","#b1caff","#b1caff","#b0caff","#b0caff","#b0caff","#afc9ff","#afc9ff","#afc9ff","#afc9ff","#afc9ff","#aec9ff","#aec9ff","#aec8ff","#aec8ff","#adc8ff","#adc8ff","#adc8ff","#adc8ff","#adc8ff","#acc7ff","#acc7ff","#acc7ff","#acc7ff","#acc7ff","#abc7ff","#abc7ff","#abc7ff","#abc6ff","#abc6ff","#aac6ff","#aac6ff","#aac6ff","#aac6ff","#aac6ff","#aac6ff","#a9c6ff","#a9c5ff","#a9c5ff","#a9c5ff","#a9c5ff","#a9c5ff","#a9c5ff","#a8c5ff","#a8c5ff","#a8c5ff","#a8c5ff","#a8c4ff","#a8c4ff","#a8c4ff","#a7c4ff","#a7c4ff","#a7c4ff","#a7c4ff","#a7c4ff","#a7c4ff","#a7c4ff","#a6c4ff","#a6c3ff","#a6c3ff","#a6c3ff","#a6c3ff","#a6c3ff","#a6c3ff","#a6c3ff","#a5c3ff","#a5c3ff","#a5c3ff","#a5c3ff","#a5c3ff","#a5c3ff","#a5c2ff","#a5c2ff","#a5c2ff","#a4c2ff","#a4c2ff","#a4c2ff","#a4c2ff","#a4c2ff","#a4c2ff","#a4c2ff","#a4c2ff","#a4c2ff","#a4c2ff","#a3c2ff","#a3c2ff","#a3c1ff","#a3c1ff","#a3c1ff","#a3c1ff","#a3c1ff","#a3c1ff","#a3c1ff","#a3c1ff","#a3c1ff","#a2c1ff","#a2c1ff","#a2c1ff","#a2c1ff","#a2c1ff","#a2c1ff","#a2c1ff","#a2c1ff","#a2c0ff","#a2c0ff","#a2c0ff","#a2c0ff","#a2c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a1c0ff","#a0c0ff","#a0c0ff","#a0bfff","#a0bfff","#a0bfff","#a0bfff","#a0bfff","#a0bfff","#a0bfff","#a0bfff","#a0bfff","#a0bfff","#a0bfff","#a0bfff","#a0bfff","#9fbfff","#9fbfff","#9fbfff","#9fbfff","#9fbfff","#9fbfff","#9fbfff","#9fbfff","#9fbfff","#9fbfff","#9fbfff","#9fbeff","#9fbeff","#9fbeff","#9fbeff","#9fbeff","#9fbeff","#9fbeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9ebeff","#9dbeff","#9dbeff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9dbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbdff","#9cbcff","#9cbcff","#9cbcff","#9cbcff","#9cbcff","#9cbcff","#9cbcff","#9cbcff","#9cbcff","#9cbcff","#9cbcff","#9cbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff","#9bbcff"];
@@ -36,10 +35,6 @@ function calcStarRadiusAU(relLuminosity, tEff) {
   const bbOutput = calcStarEnergyFlux(tEff);
   const radiusM = Math.sqrt(L / (4 * Math.PI * bbOutput));
   return radiusM / AU_IN_M;
-}
-
-function calcPlanetRadiusAU(relRadius) {
-  return (relRadius * EARTH_RADIUS_M) / AU_IN_M;
 }
 
 function calcPlanetEnergyIn(relLuminosity, relPlanetDist) {
@@ -128,7 +123,6 @@ const StarPlanet = (function () {
   let state = {
     tEff: 6000,
     relLuminosity: 1,
-    relPlanetRadius: 1,
     relPlanetDist: 1,
   };
 
@@ -136,10 +130,9 @@ const StarPlanet = (function () {
   let planetPx = null; // {x, y, r}
 
   function computeAndDraw() {
-    const { tEff, relLuminosity, relPlanetRadius, relPlanetDist } = state;
+    const { tEff, relLuminosity, relPlanetDist } = state;
 
     const starRadiusAU = calcStarRadiusAU(relLuminosity, tEff);
-    const planetRadiusAU = calcPlanetRadiusAU(relPlanetRadius);
     const starColor = getStarColor(tEff);
     const starEnergyOut = calcStarEnergyFlux(tEff);
     const planetEnergyIn = calcPlanetEnergyIn(relLuminosity, relPlanetDist);
@@ -165,7 +158,7 @@ const StarPlanet = (function () {
     // than being swamped by a separately-weighted temperature term.
     const SOLAR_RADIUS_AU = 0.00465;
     const starPxRadius = Math.max(10, Math.min(90, 40 + 22 * Math.log10(starRadiusAU / SOLAR_RADIUS_AU)));
-    const planetPxRadius = Math.max(4, Math.min(22, 6 * Math.pow(relPlanetRadius, 0.5)));
+    const planetPxRadius = 6;
 
     starPx = { x: auToPx(0.02), y: midY, r: starPxRadius, color: starColor };
     planetPx = { x: auToPx(relPlanetDist), y: midY, r: planetPxRadius };
@@ -183,7 +176,7 @@ const StarPlanet = (function () {
     ctx.lineTo(W - marginPx, midY + 100);
     ctx.stroke();
     ctx.fillStyle = "rgba(255,255,255,0.5)";
-    ctx.font = "11px 'Open Sans', Arial, sans-serif";
+    ctx.font = "14px 'Open Sans', Arial, sans-serif";
     ctx.textAlign = "center";
     [0.1, 1, 10, 100, 1000].forEach(function (au) {
       const x = auToPx(au);
@@ -231,7 +224,7 @@ const StarPlanet = (function () {
 
     // labels
     ctx.fillStyle = "rgba(255,255,255,0.75)";
-    ctx.font = "12px 'Open Sans', Arial, sans-serif";
+    ctx.font = "15px 'Open Sans', Arial, sans-serif";
     ctx.fillText("Sol", starPx.x, starPx.y - starPxRadius - 10);
     ctx.fillText("Terra", planetPx.x, planetPx.y - planetPxRadius - 10);
 
@@ -250,7 +243,6 @@ const StarPlanet = (function () {
     const distFromStarM = (relPlanetDist - starRadiusAU) * AU_IN_M;
     els.planetTable.innerHTML =
       "<tr><td>Distance from star</td><td>" + fmtExp(distFromStarM, 3) + " m</td></tr>" +
-      "<tr><td>Radius</td><td>" + fmtExp(planetRadiusAU * AU_IN_M, 3) + " m</td></tr>" +
       "<tr><td>Energy flux in</td><td>" + fmtExp(planetEnergyIn, 3) + " W/m²</td></tr>";
 
     return { planetEnergyIn };
@@ -432,7 +424,7 @@ const Habitability = (function () {
     ctx.strokeRect(PLOT.left, PLOT.top, plotW, plotH);
 
     ctx.fillStyle = "rgba(255,255,255,0.6)";
-    ctx.font = "11px 'Open Sans', Arial, sans-serif";
+    ctx.font = "14px 'Open Sans', Arial, sans-serif";
     ctx.textAlign = "center";
     [0, 0.25, 0.5, 0.75, 1].forEach(function (a) {
       const x = xToPx(a);
@@ -453,9 +445,9 @@ const Habitability = (function () {
 
     // reference planets
     const refs = [
-      { name: "Mars", alpha: 0.25, tau: 0.125, color: "#e07856" },
-      { name: "Earth", alpha: 0.3, tau: 0.84, color: "#7fd6c2" },
-      { name: "Venus", alpha: 0.77, tau: 125, color: "#c9a0dc" },
+      { name: "Mars", alpha: 0.25, tau: 0.125, color: "#e07856", labelColor: "rgba(255,255,255,0.85)" },
+      { name: "Earth", alpha: 0.3, tau: 0.84, color: "#7fd6c2", labelColor: "rgba(0,0,0,0.85)" },
+      { name: "Venus", alpha: 0.77, tau: 125, color: "#c9a0dc", labelColor: "rgba(255,255,255,0.85)" },
     ];
     refs.forEach(function (p) {
       const x = xToPx(p.alpha);
@@ -467,7 +459,7 @@ const Habitability = (function () {
       ctx.strokeStyle = "#000";
       ctx.lineWidth = 1;
       ctx.stroke();
-      ctx.fillStyle = "rgba(255,255,255,0.85)";
+      ctx.fillStyle = p.labelColor;
       ctx.textAlign = "left";
       ctx.fillText(p.name, x + 10, y + 4);
     });
