@@ -68,7 +68,7 @@ li {
  */
 html, #page-wrap { background-color: transparent; }
 html {
-  background: var(--stadium-night) url(images/ORACLESbg.jpeg) center center no-repeat fixed;
+  background: var(--stadium-night) url(images/background.jpg) center center no-repeat fixed;
   background-size: cover;
 }
 .bg-video {
