@@ -117,8 +117,7 @@ const StarPlanet = (function () {
     tEffOut: document.getElementById("out-teff"),
     lum: document.getElementById("slider-luminosity"),
     lumOut: document.getElementById("out-luminosity"),
-    radius: document.getElementById("slider-planet-radius"),
-    radiusOut: document.getElementById("out-planet-radius"),
+    starPreset: document.getElementById("select-star-preset"),
     dist: document.getElementById("slider-planet-dist"),
     distOut: document.getElementById("out-planet-dist"),
     starTable: document.getElementById("star-table"),
@@ -264,19 +263,27 @@ const StarPlanet = (function () {
   function updateFromSliders() {
     state.tEff = parseFloat(els.tEff.value);
     state.relLuminosity = Math.pow(10, parseFloat(els.lum.value));
-    state.relPlanetRadius = parseFloat(els.radius.value);
     state.relPlanetDist = Math.pow(10, parseFloat(els.dist.value));
 
     els.tEffOut.textContent = state.tEff + " K";
     els.lumOut.textContent = fmtExp(state.relLuminosity, 2) + " L☉";
-    els.radiusOut.textContent = state.relPlanetRadius.toFixed(1) + " R⊕";
     els.distOut.textContent = fmtExp(state.relPlanetDist, 2) + " AU";
 
     computeAndDraw();
   }
 
-  [els.tEff, els.lum, els.radius, els.dist].forEach(function (el) {
+  [els.tEff, els.lum, els.dist].forEach(function (el) {
     el.addEventListener("input", updateFromSliders);
+  });
+
+  els.starPreset.addEventListener("change", function () {
+    if (!els.starPreset.value) return;
+    const parts = els.starPreset.value.split(",");
+    const presetTEff = parseFloat(parts[0]);
+    const presetLum = parseFloat(parts[1]);
+    els.tEff.value = presetTEff;
+    els.lum.value = Math.log10(presetLum);
+    updateFromSliders();
   });
 
   canvas.addEventListener("mousemove", function (evt) {
