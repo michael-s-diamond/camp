@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>TerraSol | Diamond Group @ Florida State</title>
+    <meta name="description" content="Interactive star and planet habitability simulator — a static, client-side rebuild of TerraSol.">
+    <meta name="author" content="Michael Diamond">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="terrasol.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="page-wrap">
+      <header id="header">
+        <div class="header-inner">
+          <a href="index.html" class="site-title">
+            <h1>CAMP: Clouds and Aerosols from Microphysical to Planetary scales</h1>
+            <p class="tagline">Michael Diamond's research group at Florida State University</p>
+          </a>
+          <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+        <nav id="main-nav">
+          <ul class="main-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-me.html">About</a></li>
+            <li><a href="cv.html">CV</a></li>
+            <li><a href="group.html">Group</a></li>
+            <li class="has-dropdown"><a href="research.html">Research</a>
+              <ul class="dropdown">
+                <li><a href="research.html#marine-cloud-brightening">Marine Cloud Brightening</a></li>
+                <li><a href="research.html#natural-experiments">Natural Experiments</a></li>
+                <li><a href="research.html#smoke-cloud-interactions">Smoke-Cloud Interactions</a></li>
+                <li><a href="research.html#cloud-droplet-remote-sensing">Cloud Droplet Remote Sensing</a></li>
+                <li><a href="research.html#previous-work">Previous Work</a></li>
+              </ul>
+            </li>
+            <li><a href="papers.html">Papers</a></li>
+            <li><a href="talks.html">Talks</a></li>
+            <li class="has-dropdown"><a href="outreach.html" class="active">Outreach</a>
+              <ul class="dropdown">
+                <li><a href="outreach.html#contact">Contact</a></li>
+                <li><a href="outreach.html#in-the-news">In the News</a></li>
+                <li><a href="outreach.html#models" class="active">Interactive Models</a></li>
+                <li><a href="outreach.html#past-talks">Past Outreach Talks</a></li>
+              </ul>
+            </li>
+            <li><a href="news.html">News</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <div id="content">
+
+        <section class="block">
+          <p class="eyebrow">Interactive model</p>
+          <h2>TerraSol</h2>
+          <p>
+            Design a star-planet system and explore the physics behind planetary habitability.
+            This is a static, client-side rebuild of
+            <a href="https://github.com/frodre/TerraSol">TerraSol</a> (originally by Andre Perkins
+            and Michael Diamond, previously hosted on Heroku) — no server required, so it can't go
+            down the way the old version did.
+          </p>
+        </section>
+
+        <section class="block">
+          <h3>Star &amp; planet simulator</h3>
+          <div class="terrasol-canvas-wrap">
+            <canvas id="star-planet-canvas" width="800" height="400"></canvas>
+            <div id="star-planet-tooltip" class="terrasol-tooltip"></div>
+          </div>
+
+          <div class="terrasol-sliders">
+            <div class="slider-row">
+              <label for="slider-teff">Star effective temperature <span id="out-teff" class="slider-out"></span></label>
+              <input type="range" id="slider-teff" min="1000" max="40000" step="100" value="6000">
+            </div>
+            <div class="slider-row">
+              <label for="slider-luminosity">Relative luminosity (10ˣ, solar units) <span id="out-luminosity" class="slider-out"></span></label>
+              <input type="range" id="slider-luminosity" min="-5" max="5" step="0.1" value="0">
+            </div>
+            <div class="slider-row">
+              <label for="slider-planet-radius">Relative planet radius (Earth radii) <span id="out-planet-radius" class="slider-out"></span></label>
+              <input type="range" id="slider-planet-radius" min="0.1" max="4" step="0.1" value="1">
+            </div>
+            <div class="slider-row">
+              <label for="slider-planet-dist">Relative planet distance (10ˣ, AU) <span id="out-planet-dist" class="slider-out"></span></label>
+              <input type="range" id="slider-planet-dist" min="-1" max="3" step="0.1" value="0">
+            </div>
+          </div>
+
+          <div class="terrasol-table-row">
+            <table class="terrasol-table">
+              <caption>Sol characteristics</caption>
+              <tbody id="star-table"></tbody>
+            </table>
+            <table class="terrasol-table">
+              <caption>Terra characteristics</caption>
+              <tbody id="planet-table"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="block">
+          <h3>Planetary habitability simulator</h3>
+          <p class="meta">
+            Surface temperature as a function of albedo and greenhouse effect, for the current
+            solar input. Colored bands follow the original app's temperature scale (32&ndash;112&deg;F).
+          </p>
+
+          <div class="terrasol-canvas-wrap">
+            <canvas id="habitability-canvas" width="800" height="420"></canvas>
+            <div id="habitability-tooltip" class="terrasol-tooltip"></div>
+          </div>
+          <div id="terrasol-colorbar" class="terrasol-colorbar" aria-hidden="true">
+            <span>32&deg;F</span><span>112&deg;F</span>
+          </div>
+
+          <p id="terra-readout" class="readout"></p>
+          <p id="solar-readout" class="meta"></p>
+          <p>
+            <button id="btn-sync-solar" class="btn" type="button">Use current planet's solar input</button>
+          </p>
+
+          <div class="terrasol-sliders">
+            <div class="slider-row">
+              <label for="slider-land-albedo">Land albedo <span id="out-land-albedo" class="slider-out"></span></label>
+              <input type="range" id="slider-land-albedo" min="0" max="1" step="0.05" value="0.2">
+            </div>
+            <div class="slider-row">
+              <label for="slider-land-frac">Land fraction <span id="out-land-frac" class="slider-out"></span></label>
+              <input type="range" id="slider-land-frac" min="0" max="1" step="0.05" value="0.3">
+            </div>
+            <div class="slider-row">
+              <label for="slider-cloud-albedo">Cloud albedo <span id="out-cloud-albedo" class="slider-out"></span></label>
+              <input type="range" id="slider-cloud-albedo" min="0" max="1" step="0.05" value="0.4">
+            </div>
+            <div class="slider-row">
+              <label for="slider-cloud-frac">Cloud fraction <span id="out-cloud-frac" class="slider-out"></span></label>
+              <input type="range" id="slider-cloud-frac" min="0" max="1" step="0.05" value="0.7">
+            </div>
+            <div class="slider-row">
+              <label for="slider-tau">Atmosphere greenhouse effect (10ˣ) <span id="out-tau" class="slider-out"></span></label>
+              <input type="range" id="slider-tau" min="-1" max="2.176" step="0.01" value="-0.0757">
+            </div>
+            <div class="slider-row">
+              <label for="select-tau-preset">Preset greenhouse effect</label>
+              <select id="select-tau-preset">
+                <option value="">— choose a preset —</option>
+                <option value="0.125">Mars</option>
+                <option value="0.66">Earth (100 ppm CO&#8322;)</option>
+                <option value="0.75">Earth (200 ppm CO&#8322;)</option>
+                <option value="0.84">Earth (400 ppm CO&#8322;)</option>
+                <option value="0.93">Earth (800 ppm CO&#8322;)</option>
+                <option value="1.02">Earth (1600 ppm CO&#8322;)</option>
+                <option value="1.12">Earth (3200 ppm CO&#8322;)</option>
+                <option value="3">Titan</option>
+                <option value="125">Venus</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="block">
+          <p class="meta">
+            Physics ported from the original TerraSol source (Stefan-Boltzmann blackbody radiation,
+            inverse-square law, and the <code>SimpleClimate</code> surface-temperature model). The
+            heavier latitude-resolved energy balance model in the original repo was never actually
+            part of the deployed app, so it isn't reproduced here.
+          </p>
+        </section>
+
+      </div>
+
+      <footer>
+        <p>&copy; 2026 Michael Diamond &middot; Diamond Group, Department of Earth, Ocean, and Atmospheric Science, Florida State University</p>
+        <p><a href="mailto:msdiamond@fsu.edu">msdiamond@fsu.edu</a> &middot; <a href="https://www.eoas.fsu.edu/">EOAS at FSU</a></p>
+        <p class="disclaimer">Views expressed on this site are my own and do not represent the opinions of Florida State University or any funding agency.</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="terrasol.js"></script>
+  </body>
+</html>

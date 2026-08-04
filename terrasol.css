@@ -1,0 +1,119 @@
+.terrasol-canvas-wrap {
+  position: relative;
+  max-width: 100%;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(206, 184, 136, .2);
+}
+.terrasol-canvas-wrap canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background: #0c0a14;
+}
+
+.terrasol-tooltip {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+  background: rgba(16, 24, 32, .95);
+  border: 1px solid var(--fsu-gold);
+  border-radius: 4px;
+  padding: .6rem .8rem;
+  font-size: 1.3rem;
+  color: #fff;
+  line-height: 1.4;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.terrasol-sliders {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem 2rem;
+  margin-bottom: 1.5rem;
+}
+.slider-row label {
+  display: block;
+  font-size: 1.3rem;
+  color: var(--gulf-sands);
+  margin-bottom: .4rem;
+}
+.slider-row .slider-out {
+  color: var(--fsu-gold);
+  font-weight: 700;
+}
+.slider-row input[type="range"] {
+  width: 100%;
+  accent-color: var(--fsu-gold);
+}
+.slider-row select {
+  width: 100%;
+  padding: .5rem;
+  background: var(--stadium-night);
+  color: #fff;
+  border: 1px solid rgba(206, 184, 136, .35);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1.3rem;
+}
+
+.terrasol-table-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+table.terrasol-table {
+  flex: 1 1 320px;
+  border-collapse: collapse;
+  font-size: 1.3rem;
+}
+table.terrasol-table caption {
+  text-align: left;
+  color: var(--fsu-gold);
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+table.terrasol-table td {
+  padding: .4rem .6rem;
+  border-bottom: 1px solid rgba(206, 184, 136, .15);
+}
+table.terrasol-table td:first-child {
+  color: var(--gulf-sands);
+}
+table.terrasol-table td:last-child {
+  text-align: right;
+  font-family: "Courier New", monospace;
+}
+
+.terrasol-colorbar {
+  height: 14px;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right,
+    #a50026, #d73027, #f46d43, #fdae61, #fee090, #ffffbf,
+    #e0f3f8, #abd9e9, #74add1, #4575b4, #313695);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,.7);
+  padding: 0 .4rem;
+}
+
+.readout {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.readout.habitable {
+  color: #7fd6c2;
+}
+.readout.not-habitable {
+  color: #e07856;
+}
+
+#btn-sync-solar {
+  cursor: pointer;
+  font: inherit;
+}
