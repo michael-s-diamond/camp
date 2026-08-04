@@ -1,7 +1,8 @@
 # Diamond Group @ Florida State — website
 
 Static site for the Diamond Group (Michael Diamond, EOAS/FSU), replacing the previous WordPress site
-at msdiamond.cloud. Vanilla HTML/CSS/JS, published via GitHub Pages from the `gh-pages` branch.
+at msdiamond.cloud. Vanilla HTML/CSS/JS, published via GitHub Pages from the `gh-pages` branch at
+https://michael-s-diamond.github.io/camp/.
 
 ## Pages
 
@@ -22,11 +23,12 @@ at msdiamond.cloud. Vanilla HTML/CSS/JS, published via GitHub Pages from the `gh
 There's no build step or CMS — edit the HTML files directly. Nav/header/footer markup is duplicated
 across pages (no templating), so if you change the nav, update it in every `.html` file.
 
-## Custom domain (msdiamond.cloud)
+## Domain
 
-The `CNAME` file in this repo tells GitHub Pages to serve this site at `msdiamond.cloud`. You'll also
-need to point DNS at GitHub Pages and enable the custom domain in the repo's Pages settings — see the
-setup notes provided alongside this migration.
+This site is served at the default `michael-s-diamond.github.io/camp/` address — there is no custom
+domain configured (no `CNAME` file). msdiamond.cloud has been retired; if a `CNAME` file or a custom
+domain re-appears in the repo's Pages settings, remove/clear it, since either one will redirect the
+github.io URL away from this site.
 
 ## Images
 
