@@ -330,6 +330,115 @@ section.block:last-child {
   margin-bottom: .6rem;
 }
 
+/* Research project rotator */
+.rotator {
+  position: relative;
+  aspect-ratio: 16 / 8;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--stadium-night);
+}
+.rotator-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .6s ease;
+}
+.rotator-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+.rotator-slide a {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+.rotator-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.rotator-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 3rem 1.5rem 1.5rem;
+  background: linear-gradient(to top, rgba(16, 24, 32, .92), rgba(16, 24, 32, 0));
+}
+.rotator-caption h3 {
+  margin-bottom: .3rem;
+  color: var(--fsu-white);
+}
+.rotator-caption p {
+  margin-bottom: 0;
+  color: var(--gulf-sands);
+  font-size: 1.4rem;
+  max-width: 32rem;
+}
+.rotator-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(206, 184, 136, .4);
+  border-radius: 50%;
+  background: rgba(16, 24, 32, .6);
+  color: var(--fsu-white);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.rotator-arrow:hover {
+  background: var(--fsu-garnet);
+  border-color: var(--fsu-garnet);
+}
+.rotator-prev {
+  left: 12px;
+}
+.rotator-next {
+  right: 12px;
+}
+.rotator-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: .6rem;
+}
+.rotator-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .6);
+  background: rgba(255, 255, 255, .25);
+  cursor: pointer;
+  padding: 0;
+}
+.rotator-dot.active {
+  background: var(--fsu-gold);
+  border-color: var(--fsu-gold);
+}
+.rotator-note {
+  margin-top: .8rem;
+  margin-bottom: 0;
+}
+@media (max-width: 700px) {
+  .rotator {
+    aspect-ratio: 4 / 5;
+  }
+  .rotator-caption p {
+    max-width: none;
+  }
+}
+
 /* Home hero */
 .hero {
   margin-bottom: 2rem;
