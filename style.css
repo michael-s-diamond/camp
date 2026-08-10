@@ -290,6 +290,19 @@ section.block:last-child {
   margin-bottom: .6rem;
 }
 
+.social-links {
+  display: flex;
+  gap: .8rem;
+}
+.social-links a {
+  color: var(--gulf-sands);
+  line-height: 0;
+}
+.social-links a:hover {
+  color: var(--fsu-gold);
+  text-decoration: none;
+}
+
 /* Papers / talks lists */
 .pub-list {
   list-style: none;

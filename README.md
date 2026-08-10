@@ -6,9 +6,9 @@ https://michael-s-diamond.github.io/camp/.
 
 ## Pages
 
-- `index.html` — home / recent updates
-- `about-me.html` — About Michael
-- `cv.html` — links to CV PDF (`files/cv_md_20241114.pdf`)
+- `index.html` — home / recent updates; also has the CV link (`files/cv_md_20241114.pdf`) and
+  GitHub/LinkedIn icon links in the mini-bio card (no separate CV page anymore)
+- `about-me.html` — About Michael (no longer linked from the nav, but still reachable directly)
 - `group.html` — group members
 - `research.html` — research areas (Marine Cloud Brightening, Natural Experiments, Smoke-Cloud
   Interactions, Cloud Droplet Remote Sensing, Previous Work), each as an anchored section
