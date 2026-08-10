@@ -290,6 +290,13 @@ section.block:last-child {
   margin-bottom: .6rem;
 }
 
+/* Floated bio card next to intro text (index.html, about-me.html) */
+.hero-bio-card {
+  max-width: 220px;
+  float: right;
+  margin-left: 1.5rem;
+}
+
 .social-links {
   display: flex;
   gap: .8rem;
@@ -497,5 +504,11 @@ section.block:last-child {
   }
   li.has-dropdown:hover > ul.dropdown {
     display: block;
+  }
+  .hero-bio-card {
+    float: none;
+    max-width: none;
+    margin-left: 0;
+    margin-bottom: 1.5rem;
   }
 }
