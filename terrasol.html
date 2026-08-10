@@ -57,10 +57,9 @@
           <h2>TerraSol</h2>
           <p>
             Design a star-planet system and explore the physics behind planetary habitability.
-            This is a static, client-side rebuild of
+            This is a rebuild of
             <a href="https://github.com/frodre/TerraSol" target="_blank" rel="noopener noreferrer">TerraSol</a> (originally by Andre Perkins
-            and Michael Diamond, previously hosted on Heroku) — no server required, so it can't go
-            down the way the old version did.
+            and Michael Diamond, previously hosted on Heroku).
           </p>
         </section>
 
@@ -115,7 +114,7 @@
           <h3>Planetary habitability simulator</h3>
           <p class="meta">
             Surface temperature as a function of albedo and greenhouse effect, for the current
-            solar input. Colored bands follow the original app's temperature scale (32&ndash;112&deg;F).
+            solar input.
           </p>
 
           <div class="terrasol-canvas-wrap">
@@ -129,7 +128,7 @@
           <p id="terra-readout" class="readout"></p>
           <p id="solar-readout" class="meta"></p>
           <p>
-            <button id="btn-sync-solar" class="btn" type="button">Use current planet's solar input</button>
+            <button id="btn-sync-solar" class="btn" type="button">Refresh star</button>
           </p>
 
           <div class="terrasol-sliders">
@@ -169,15 +168,6 @@
               </select>
             </div>
           </div>
-        </section>
-
-        <section class="block">
-          <p class="meta">
-            Physics ported from the original TerraSol source (Stefan-Boltzmann blackbody radiation,
-            inverse-square law, and the <code>SimpleClimate</code> surface-temperature model). The
-            heavier latitude-resolved energy balance model in the original repo was never actually
-            part of the deployed app, so it isn't reproduced here.
-          </p>
         </section>
 
       </div>
