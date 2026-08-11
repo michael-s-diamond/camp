@@ -297,6 +297,15 @@ section.block:last-child {
   margin-left: 1.5rem;
 }
 
+/* Small preview screenshots (e.g. TerraSol on the Outreach page) */
+.screenshot-preview {
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid rgba(206, 184, 136, .25);
+  border-radius: 6px;
+  margin-top: .5rem;
+}
+
 .social-links {
   display: flex;
   gap: .8rem;
